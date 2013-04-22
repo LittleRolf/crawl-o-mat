@@ -16,8 +16,11 @@ class WebCrawler implements Iterable<WebLink> {
     private List<WebLink> linkList = new ArrayList<WebLink>();
 
 
-    public WebCrawler(String targetURL, int maxDepth) {
+    public WebCrawler(String targetURL, int maxDepth) throws YouAreDeadUntilItFinishesException {
         this.targetURL = targetURL;
+		if(maxDepth > 20) {
+			throw new YouAreDeadUntilItFinishesException("Sorry, you are dead until this would finish!");
+		}
         this.maxDepth = maxDepth;
 
         init();
@@ -80,5 +83,12 @@ class WebCrawler implements Iterable<WebLink> {
 
     public Iterator<WebLink> iterator() {
         return linkList.iterator();
+    }
+	
+	
+	public class YouAreDeadUntilItFinishesException extends Exception {
+		public YouAreDeadUntilItFinishesException(String msg) {
+			super(msg);
+		}
     }
 }

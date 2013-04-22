@@ -17,7 +17,7 @@ public class App {
         WebCrawler crawler = new WebCrawler("https://hgo-ol.de/idesk", 4);
         System.out.println("Crawling finished, here are your URLs:");
         for (WebLink link : crawler) {
-            System.out.println(link.getURLString());
+            System.out.println(link.getRequest().getURL());
         }
 
     }
